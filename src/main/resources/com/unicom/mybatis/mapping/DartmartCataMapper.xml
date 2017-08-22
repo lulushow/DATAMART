@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unicom.mybatis.dao.DartmartCataMapper">
+  <resultMap id="BaseResultMap" type="com.unicom.mybatis.pojo.DartmartCata">
+    <result column="DATATYPE" jdbcType="VARCHAR" property="datatype" />
+    <result column="DATABROADTYPE" jdbcType="VARCHAR" property="databroadtype" />
+    <result column="FACTORY" jdbcType="VARCHAR" property="factory" />
+    <result column="NETELEMENT" jdbcType="VARCHAR" property="netelement" />
+    <result column="POINTERTYPE" jdbcType="VARCHAR" property="pointertype" />
+    <result column="DATADATE" jdbcType="VARCHAR" property="datadate" />
+    <result column="DATASIZE" jdbcType="DECIMAL" property="datasize" />
+    <result column="INTRODUCE" jdbcType="VARCHAR" property="introduce" />
+    <result column="DATADETAIL" jdbcType="VARCHAR" property="datadetail" />
+    <result column="DATAEXAMPLE" jdbcType="VARCHAR" property="dataexample" />
+  </resultMap>
+  <insert id="insert" parameterType="com.unicom.mybatis.pojo.DartmartCata">
+    insert into DATAMARTCATA (DATATYPE, DATABROADTYPE, FACTORY, 
+      NETELEMENT, POINTERTYPE, DATADATE, 
+      DATASIZE, INTRODUCE, DATADETAIL, 
+      DATAEXAMPLE)
+    values (#{datatype,jdbcType=VARCHAR}, #{databroadtype,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, 
+      #{netelement,jdbcType=VARCHAR}, #{pointertype,jdbcType=VARCHAR}, #{datadate,jdbcType=VARCHAR}, 
+      #{datasize,jdbcType=DECIMAL}, #{introduce,jdbcType=VARCHAR}, #{datadetail,jdbcType=VARCHAR}, 
+      #{dataexample,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicom.mybatis.pojo.DartmartCata">
+    insert into DATAMARTCATA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="datatype != null">
+        DATATYPE,
+      </if>
+      <if test="databroadtype != null">
+        DATABROADTYPE,
+      </if>
+      <if test="factory != null">
+        FACTORY,
+      </if>
+      <if test="netelement != null">
+        NETELEMENT,
+      </if>
+      <if test="pointertype != null">
+        POINTERTYPE,
+      </if>
+      <if test="datadate != null">
+        DATADATE,
+      </if>
+      <if test="datasize != null">
+        DATASIZE,
+      </if>
+      <if test="introduce != null">
+        INTRODUCE,
+      </if>
+      <if test="datadetail != null">
+        DATADETAIL,
+      </if>
+      <if test="dataexample != null">
+        DATAEXAMPLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="datatype != null">
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="databroadtype != null">
+        #{databroadtype,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null">
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="netelement != null">
+        #{netelement,jdbcType=VARCHAR},
+      </if>
+      <if test="pointertype != null">
+        #{pointertype,jdbcType=VARCHAR},
+      </if>
+      <if test="datadate != null">
+        #{datadate,jdbcType=VARCHAR},
+      </if>
+      <if test="datasize != null">
+        #{datasize,jdbcType=DECIMAL},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="datadetail != null">
+        #{datadetail,jdbcType=VARCHAR},
+      </if>
+      <if test="dataexample != null">
+        #{dataexample,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <select id="selectIndexCata" resultType="hashMap">
+    SELECT  DATATYPE as DATATYPE,DATABROADTYPE as DATABROADTYPE,max(DATADATE) as NEWSESTDATE,sum(DATASIZE) as DATASIZE from DATAMARTCATA group by DATATYPE,DATABROADTYPE
+  </select>
+
+  <select id="selectFactoryCata" resultType="hashMap">
+    select DATATYPE as DATATYPE,DATABROADTYPE as DATABROADTYPE,FACTORY as FACTORY,NETELEMENT as NETELEMENT,POINTERTYPE as POINTERTYPE,INTRODUCE as INTRODUCE, max(DATADATE) as NEWSESTDATE,SUM(DATASIZE) as DATASIZE from DATAMARTCATA group by DATATYPE,DATABROADTYPE,FACTORY,NETELEMENT,POINTERTYPE,INTRODUCE having DATATYPE=#{dataType,jdbcType=VARCHAR} and DATABROADTYPE=#{dataBroadType,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectDataSample" resultType="hashMap">
+    select distinct INTRODUCE as INTRODUCE,DATADETAIL as DATADETAIL,DATAEXAMPLE as DATAEXAMPLE from DATAMARTCATA where DATATYPE=#{dataType,jdbcType=VARCHAR} and DATABROADTYPE=#{dataBroadType,jdbcType=VARCHAR}
+    <if test="factory != null">
+      and FACTORY=#{factory,jdbcType=VARCHAR}
+    </if>
+    <if test="netElement != null">
+      and NETELEMENT=#{netElement,jdbcType=VARCHAR}
+    </if>
+    <if test="pointerType != null">
+      and POINTERTYPE=#{pointerType,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

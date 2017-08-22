@@ -1,0 +1,191 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "microsoft yahei";
+    list-style: none;
+    list-style-type:none;
+    text-decoration:none;
+}
+a:hover{
+    text-decoration: none;
+}
+.content_product{
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.top_content{
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+/*左侧图片*/
+.pic_lef{
+    float: left;
+    width: 300px;
+    height: 341px;
+    position: relative;
+}
+.pic_lef img{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/*右侧部分*/
+
+.cont_rig{
+    margin-left: 340px;
+    max-width: 960px;
+    position: relative;
+}
+.text_title{
+    height: 30px;
+    line-height: 30px;
+    font-family: "Microsoft YaHei";
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    /*font-weight: bold;*/
+}
+.text_title span{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.text_title a{
+    color: #000000;
+}
+.text_title a:hover{
+    color: #337ab7;
+}
+.details{
+    background-color: #f1f1f1;
+    position: relative;
+    margin-left: 0;
+    padding: 10px;
+}
+.detail_box{
+    position: relative;
+    margin: 10px;
+    line-height: 30px;
+    max-height: 40px;
+}
+.detail_title{
+    font-weight: bold;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    width: 9%;
+    margin-bottom: 0;
+}
+.details_instrduce{
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    width: 91%;
+    margin: 0;
+}
+.redColor{
+    color: red;
+}
+.prov option{
+    width: 100px;
+}
+.text_input,#calendar{
+    border: solid 1px #C6C6C6;
+    height: 30px;
+    line-height: 30px;
+}
+.cal{
+    margin-left: 10px;
+}
+
+.count{
+    margin-top: 20px;
+}
+.fll{
+    display: inline-block;
+    margin-right: 20px;
+}
+.fll img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.download{
+    margin-top: 20px;
+}
+.download button{
+    width: 150px;
+    height: 40px;
+    background-color: #337ab7;
+    color: #ffffff;
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.download img{
+    width: 30px;
+    height: 30px;
+}
+
+/*日历样式*/
+#viewCalendar{
+    display: none;
+    position: absolute;
+    left: 216px;
+    bottom: -185px;
+}
+.Calendar {
+    font-family:Verdana;
+    font-size:9pt;
+    background-color:#ffffff;
+    text-align:center;
+    width:198px;
+    height:180px;
+    padding:10px;
+    line-height:1.5em;
+    border: solid 1px rgba(146,0,0,0.7);
+}
+
+.Calendar a{
+    color:#0066CC;
+}
+.Calendar table{
+    width:100%;
+    border:0;
+}
+.Calendar table thead{color:#acacac;}
+.Calendar table td {
+    font-size: 11px;
+    padding:1px;
+}
+.haveData{
+    display: inline-block;
+    border: solid 1px red;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    color: blue;
+    text-decoration: none;
+}
+#idCalendarPre{
+    cursor:pointer;
+    float:left;
+    padding-right:5px;
+}
+#idCalendarNext{
+    cursor:pointer;
+    float:right;
+    padding-right:5px;
+}
+#idCalendar td.onToday {
+    font-weight:bold;
+    color:#C60;
+}
+#idCalendar td.onSelect {
+    font-weight:bold;
+}

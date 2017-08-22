@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unicom.mybatis.dao.DartmartMapper">
+  <resultMap id="BaseResultMap" type="com.unicom.mybatis.pojo.Dartmart">
+    <result column="DATATYPE" jdbcType="VARCHAR" property="datatype" />
+    <result column="DATABROADTYPE" jdbcType="VARCHAR" property="databroadtype" />
+    <result column="FACTORY" jdbcType="VARCHAR" property="factory" />
+    <result column="NETELEMENT" jdbcType="VARCHAR" property="netelement" />
+    <result column="POINTERTYPE" jdbcType="VARCHAR" property="pointertype" />
+    <result column="DATADATE" jdbcType="VARCHAR" property="datadate" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="FILENAME" jdbcType="VARCHAR" property="filename" />
+    <result column="FILESIZE" jdbcType="DECIMAL" property="filesize" />
+    <result column="FILEPATH" jdbcType="VARCHAR" property="filepath" />
+    <result column="DATASOURCE" jdbcType="VARCHAR" property="datasource" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.unicom.mybatis.pojo.Dartmart">
+    insert into DATAMART (DATATYPE, DATABROADTYPE, FACTORY, 
+      NETELEMENT, POINTERTYPE, DATADATE, 
+      PROVINCE, FILENAME, FILESIZE, 
+      FILEPATH, DATASOURCE)
+    values (#{datatype,jdbcType=VARCHAR}, #{databroadtype,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, 
+      #{netelement,jdbcType=VARCHAR}, #{pointertype,jdbcType=VARCHAR}, #{datadate,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filesize,jdbcType=DECIMAL}, 
+      #{filepath,jdbcType=VARCHAR}, #{datasource,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicom.mybatis.pojo.Dartmart">
+    insert into DATAMART
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="datatype != null">
+        DATATYPE,
+      </if>
+      <if test="databroadtype != null">
+        DATABROADTYPE,
+      </if>
+      <if test="factory != null">
+        FACTORY,
+      </if>
+      <if test="netelement != null">
+        NETELEMENT,
+      </if>
+      <if test="pointertype != null">
+        POINTERTYPE,
+      </if>
+      <if test="datadate != null">
+        DATADATE,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="filename != null">
+        FILENAME,
+      </if>
+      <if test="filesize != null">
+        FILESIZE,
+      </if>
+      <if test="filepath != null">
+        FILEPATH,
+      </if>
+      <if test="datasource != null">
+        DATASOURCE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="datatype != null">
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="databroadtype != null">
+        #{databroadtype,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null">
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="netelement != null">
+        #{netelement,jdbcType=VARCHAR},
+      </if>
+      <if test="pointertype != null">
+        #{pointertype,jdbcType=VARCHAR},
+      </if>
+      <if test="datadate != null">
+        #{datadate,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=DECIMAL},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="datasource != null">
+        #{datasource,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectDataCata" resultType="hashMap">
+    select distinct PROVINCE as PROVINCE from DATAMART where DATATYPE=#{dataType,jdbcType=VARCHAR} and DATABROADTYPE=#{dataBroadType,jdbcType=VARCHAR}
+    <if test="factory != null">
+      and FACTORY=#{factory,jdbcType=VARCHAR}
+    </if>
+    <if test="netElement != null">
+      and NETELEMENT=#{netElement,jdbcType=VARCHAR}
+    </if>
+    <if test="pointerType != null">
+      and POINTERTYPE=#{pointerType,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectDataDate" resultType="hashMap">
+    select distinct DATADATE as DATADATE  from DATAMART
+    <where>
+      <if test="dataType != null">
+        DATATYPE=#{dataType,jdbcType=VARCHAR}
+      </if>
+      <if test="dataBroadType != null">
+        and DATABROADTYPE=#{dataBroadType,jdbcType=VARCHAR}
+      </if>
+      <if test="province != null">
+        and PROVINCE=#{province,jdbcType=VARCHAR}
+      </if>
+      <if test="factory != null">
+        and FACTORY=#{factory,jdbcType=VARCHAR}
+      </if>
+      <if test="netElement != null">
+        and NETELEMENT=#{netElement,jdbcType=VARCHAR}
+      </if>
+      <if test="pointerType != null">
+        and POINTERTYPE=#{pointerType,jdbcType=VARCHAR}
+      </if>
+      <if test="minDate != null">
+        and DATADATE between #{minDate,jdbcType=VARCHAR}
+      </if>
+      <if test="maxDate != null">
+        and  #{maxDate,jdbcType=VARCHAR}
+      </if>
+    </where>
+     order by DATADATE desc
+  </select>
+</mapper>
